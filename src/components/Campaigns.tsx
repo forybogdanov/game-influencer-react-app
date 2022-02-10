@@ -1,9 +1,12 @@
+import React from "react";
+import { ICampaign, ICampaignsProps } from "../types";
 import Campaign from "./Campaign";
-const Campaigns = ({campaigns}) => {
+
+const Campaigns = (props: ICampaignsProps) => {
     return ( 
         <div className="campaigns-holder">
             <ul>        
-                {campaigns.map((campaign) => (
+                {props.campaigns.map((campaign: ICampaign) => (
                     <li key={campaign.id}><Campaign  campaign={campaign}/></li>
                 ))}
             </ul>
