@@ -9,7 +9,6 @@ import { ICampaign } from "./types";
 function App() {
   const [campaigns, setCampaigns] = useState([
     {
-      id: 1,
       name: 'Campaign 1', 
       description: 'description foefkfmwefwef', 
       gameName: 'DOTA 2', 
@@ -20,7 +19,6 @@ function App() {
       language: 'English'
     }, 
     {
-      id: 2,
       name: 'Campaign 2', 
       description: 'description foefkfmwefwef', 
       gameName: 'Minecraft', 
@@ -33,7 +31,6 @@ function App() {
   ])
   const [showForm, setShowForm] = useState(false)
   const addCampaign = (campaign: ICampaign) => {
-    campaign.id = campaigns.length + 1;
     setCampaigns([...campaigns, campaign])
   }
   const toggleForm = () => {

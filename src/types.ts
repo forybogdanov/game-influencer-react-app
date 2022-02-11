@@ -1,7 +1,6 @@
 import { MouseEventHandler } from "react";
 
 export interface ICampaign {
-  id: number;
   name: string;
   description: string;
   gameName: string;
@@ -19,9 +18,9 @@ export interface ICampaignsProps {
 }
 export interface IFormProps {
   addCampaign: Function; 
-  closeForm:  MouseEventHandler;
+  closeForm:  ()=>void;
 }
 export interface IHeaderProps {
-  onClick: MouseEventHandler; 
+  onClick: ()=>void; 
   showForm:  boolean;
 }

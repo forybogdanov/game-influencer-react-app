@@ -1,8 +1,10 @@
-import React, { MouseEventHandler, useState } from "react";
+import React, { useState } from "react";
 import { IFormProps } from "../types";
+
+
 const Form = (props: IFormProps) => {
     const addCampaign: Function = props.addCampaign; 
-    const closeForm: MouseEventHandler = props.closeForm;
+    const closeForm: ()=>void = props.closeForm;
     const [name, setName] = useState('')
     const [description, setDescription] = useState('')
     const [game, setGame] = useState('')
@@ -16,12 +18,16 @@ const Form = (props: IFormProps) => {
     function getCurrentDate() {
         let today = new Date()
         let month: string
-        let monthNum: number = today.getMonth() + 1
-        monthNum < 10 ? month = '0' + monthNum + '' : month = monthNum + ''
+        let monthNumber: number = today.getMonth() + 1
+        if (monthNumber < 10) {
+            month = '0' + monthNumber
+        } else {
+            month = monthNumber + ''
+        }
         
         return today.getFullYear() + '-' + month + '-' + today.getDate()
     }
-    console.log(getCurrentDate());
+
     const onSubmit = (e: any) => {
         console.log(typeof e);
         e.preventDefault()
@@ -71,7 +77,7 @@ const Form = (props: IFormProps) => {
             gameName = otherGame
         }
         addCampaign({name, description, gameName, startDate, endDate, budget, paidWithCrypto, language})
-        closeForm(e) // closeForm requires an argument because its type is mouseEventHandler but I didn't know what to put as an argument
+        closeForm()
         setName('')
         setGame('')
         setDescription('')
@@ -81,6 +87,7 @@ const Form = (props: IFormProps) => {
         setPaidWithCrypto(false)
         setLanguage('')
     }
+
     return ( 
         <div className="form">
             <h1>Add Campaign</h1> 
@@ -121,7 +128,7 @@ const Form = (props: IFormProps) => {
                 </div>
                 <div className="form-control">
                     <label>Can be paid with Crypto currency: </label>
-                    <input type='checkbox' value={paidWithCrypto ? 1 : 0} checked={paidWithCrypto} onChange={(e) => setPaidWithCrypto(e.currentTarget.checked)}></input>
+                    <input type='checkbox' value={Number(paidWithCrypto)} checked={paidWithCrypto} onChange={(e) => setPaidWithCrypto(e.currentTarget.checked)}></input>
                 </div>
                 <div className="form-control">
                     <label>Campaign Language: </label>

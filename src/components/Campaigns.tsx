@@ -7,7 +7,7 @@ const Campaigns = (props: ICampaignsProps) => {
         <div className="campaigns-holder">
             <ul>        
                 {props.campaigns.map((campaign: ICampaign) => (
-                    <li key={campaign.id}><Campaign  campaign={campaign}/></li>
+                    <li key={campaign.name}><Campaign  campaign={campaign}/></li>
                 ))}
             </ul>
         </div>
