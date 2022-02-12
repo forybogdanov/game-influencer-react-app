@@ -1,5 +1,10 @@
-import { useState } from "react";
-const Form = ({addCampaign, closeForm}) => {
+import React, { useState } from "react";
+import { IFormProps } from "../types";
+
+
+const Form = (props: IFormProps) => {
+    const addCampaign: Function = props.addCampaign; 
+    const closeForm: ()=>void = props.closeForm;
     const [name, setName] = useState('')
     const [description, setDescription] = useState('')
     const [game, setGame] = useState('')
@@ -12,14 +17,19 @@ const Form = ({addCampaign, closeForm}) => {
 
     function getCurrentDate() {
         let today = new Date()
-        let month = today.getMonth()+1
-        if (month < 10) { 
-            month = '0' + month
+        let month: string
+        let monthNumber: number = today.getMonth() + 1
+        if (monthNumber < 10) {
+            month = '0' + monthNumber
+        } else {
+            month = monthNumber + ''
         }
+        
         return today.getFullYear() + '-' + month + '-' + today.getDate()
     }
 
-    const onSubmit = (e) => {
+    const onSubmit = (e: any) => {
+        console.log(typeof e);
         e.preventDefault()
         if(!name) {
             alert('Empty Name');
@@ -29,7 +39,7 @@ const Form = ({addCampaign, closeForm}) => {
             alert('No game selected');
             return
         }
-        if (game == 'Other' && !otherGame) {
+        if (game === 'Other' && !otherGame) {
             alert('No game selected');
             return
         }
@@ -63,7 +73,7 @@ const Form = ({addCampaign, closeForm}) => {
             return
         }
         let gameName = game;
-        if (game == 'Other') {
+        if (game === 'Other') {
             gameName = otherGame
         }
         addCampaign({name, description, gameName, startDate, endDate, budget, paidWithCrypto, language})
@@ -77,6 +87,7 @@ const Form = ({addCampaign, closeForm}) => {
         setPaidWithCrypto(false)
         setLanguage('')
     }
+
     return ( 
         <div className="form">
             <h1>Add Campaign</h1> 
@@ -103,7 +114,7 @@ const Form = ({addCampaign, closeForm}) => {
                         <option>League of Legends</option>
                         <option>Other</option>
                     </select>
-                    {game == 'Other'? <input type='text' value={otherGame} onChange={(e) => setOtherGame(e.target.value)}></input> : ''}
+                    {game === 'Other'? <input type='text' value={otherGame} onChange={(e) => setOtherGame(e.target.value)}></input> : ''}
                 </div>
                 <div className="form-control">
                     <label>Start and end date:</label>
@@ -113,11 +124,11 @@ const Form = ({addCampaign, closeForm}) => {
                 </div>
                 <div className="form-control">
                     <label>Budget: </label>
-                    <input type='number' min={0} max={10000} value={budget} onChange={(e) => setBudget(e.target.value)}></input>
+                    <input type='number' min={0} max={10000} value={budget} onChange={(e) => setBudget(parseInt(e.target.value))}></input>
                 </div>
                 <div className="form-control">
                     <label>Can be paid with Crypto currency: </label>
-                    <input type='checkbox' value={paidWithCrypto} checked={paidWithCrypto} onChange={(e) => setPaidWithCrypto(e.currentTarget.checked)}></input>
+                    <input type='checkbox' value={Number(paidWithCrypto)} checked={paidWithCrypto} onChange={(e) => setPaidWithCrypto(e.currentTarget.checked)}></input>
                 </div>
                 <div className="form-control">
                     <label>Campaign Language: </label>
