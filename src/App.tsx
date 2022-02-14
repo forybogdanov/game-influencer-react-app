@@ -4,6 +4,7 @@ import Form from "./components/Form";
 import React, { useState } from "react";
 import Campaigns from "./components/Campaigns";
 import { ICampaign } from "./types";
+import { Grid } from "@mui/material";
 
 
 function App() {
@@ -37,7 +38,7 @@ function App() {
     setShowForm(!showForm)
   }
   return (
-    <div>
+    <Grid>
       <Header showForm={showForm} onClick={toggleForm}/>
       { showForm ? 
       <Form addCampaign={addCampaign} closeForm={toggleForm}/> : 
@@ -45,7 +46,7 @@ function App() {
       }
       <Campaigns campaigns={campaigns}/>
       <Footer/>
-    </div>
+    </Grid>
   );
 }
 

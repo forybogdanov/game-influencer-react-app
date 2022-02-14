@@ -1,16 +1,17 @@
 import React from "react";
 import { ICampaign, ICampaignsProps } from "../types";
 import Campaign from "./Campaign";
+import { Grid } from "@mui/material";
 
 const Campaigns = (props: ICampaignsProps) => {
     return ( 
-        <div className="campaigns-holder">
-            <ul>        
+        <Grid container className="campaigns-holder">
                 {props.campaigns.map((campaign: ICampaign) => (
-                    <li key={campaign.name}><Campaign  campaign={campaign}/></li>
+                    <Grid item key={campaign.name}>
+                        <Campaign campaign={campaign}/>
+                    </Grid>
                 ))}
-            </ul>
-        </div>
+        </Grid>
      );
 }
  

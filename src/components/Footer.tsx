@@ -1,10 +1,12 @@
+import { Typography, Grid } from "@mui/material";
 import React from "react";
+
 const Footer = () => {
     return ( 
-        <footer className="footer">
-            <h1>Game Influencer</h1>
-            <p>by Nikifor Bogdanov</p> 
-        </footer>
+        <Grid className="footer">
+            <Typography variant='h1' sx={{fontSize: 32}}>Game Influencer</Typography>
+            <Typography variant='body1' sx={{fontSize: 16}}>by Nikifor Bogdanov</Typography> 
+        </Grid>
      );
 }
  
