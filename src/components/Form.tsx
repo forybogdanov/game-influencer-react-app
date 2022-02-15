@@ -90,22 +90,35 @@ const Form = (props: IFormProps) => {
     }
 
     return ( 
-        <Grid className="form">
-            <Typography variant='h1' sx={{fontSize: 32}}>Add Campaign</Typography> 
+        <Grid sx={{
+            width: '80%',
+            maxWidth: '700px',
+            margin: '30px auto',
+            overflow: 'auto',
+            minHeight: '300px',
+            borderRadius: '5px',
+            backgroundColor: 'rgb(179, 179, 179);',
+            textAlign: 'center',
+            padding: '10px',
+            color: 'rgb(37, 68, 65)'
+        }}>
+            <Typography variant='h1' sx={{fontSize: 32, color: 'rgb(37, 68, 65)'}}>Add Campaign</Typography> 
             <FormGroup>
-                <FormControl >
+                <FormControl sx={{
+                    margin: '10px'
+                }}>
                     <InputLabel>Campaign Name:</InputLabel>
-                    <br/>
                     <Input type='text' value={name} onChange={(e) => setName(e.target.value)}></Input>
                 </FormControl>
-                <FormControl>
-                    <InputLabel>Description:</InputLabel>
-                    <br/>
-                    <TextField multiline minRows={10} maxRows={20} fullWidth={true} margin='dense' value={description} onChange={(e) => setDescription(e.target.value)}></TextField>
+                <FormControl sx={{
+                    margin: '10px'
+                }}>
+                    <TextField label='Description' multiline minRows={10} maxRows={20} fullWidth={true} margin='dense' value={description} onChange={(e) => setDescription(e.target.value)}></TextField>
                 </FormControl>
-                <FormControl className="form-control">
-                    <InputLabel >Game:</InputLabel>
-                    <br/>
+                <FormControl sx={{
+                    margin: '10px'
+                }}>
+                    <InputLabel>Game:</InputLabel>
                     <Select label='Game' value={game} onChange={(e) => setGame(e.target.value)}>
                         <MenuItem value={'DOTA 2'}>DOTA 2</MenuItem>
                         <MenuItem value={'Minecraft'}>Minecraft</MenuItem>
@@ -115,39 +128,63 @@ const Form = (props: IFormProps) => {
                         <MenuItem value={'Other'}>Other</MenuItem>
                     </Select>     
                 </FormControl>
-                <FormControl className="form-control">
+                <FormControl>
                 {game === 'Other'? <Input type='text' value={otherGame} onChange={(e) => setOtherGame(e.target.value)}></Input> : ''}
                 </FormControl>
-                <FormControl className="form-control">
+                <FormControl sx={{
+                    margin: '10px',
+                    paddingTop: '20px',
+                    paddingLeft: '20px'
+                }}>
                     <InputLabel>Start date:</InputLabel>
-                    <br/>
                     <Input type='date' value={startDate} onChange={(e) => setStartDate(e.target.value)}></Input>
                 </FormControl>
-                <FormControl  className="form-control">
+                <FormControl sx={{
+                    margin: '10px',
+                    paddingTop: '20px',
+                    paddingLeft: '20px'
+                }}>
                     <InputLabel>End date:</InputLabel>
                     <Input type='date' value={endDate} onChange={(e) => setEndDate(e.target.value)}></Input>
                 </FormControl>
-                <FormControl className="form-control">
-                    <InputLabel>Budget: </InputLabel>
+                <FormControl sx={{
+                    margin: '10px',
+                    paddingTop: '20px',
+                    paddingLeft: '20px'
+                }}>
+                    <InputLabel sx={{fontSize: 22}}>Budget:</InputLabel>
                     <Input type='number' value={budget} onChange={(e) => setBudget(parseInt(e.target.value))}></Input>
                 </FormControl>
-                <FormControl className="form-control">
+                <FormControl sx={{
+                    margin: '10px'
+                }}>
                     <FormControlLabel label='Can be paid with Crypto currency' control={<Checkbox value={Number(paidWithCrypto)} checked={paidWithCrypto} onChange={(e) => setPaidWithCrypto(e.currentTarget.checked)}></Checkbox>}/>
                 </FormControl>
-                <FormControl className="form-control">
-                    <InputLabel>Campaign Language: </InputLabel>
-                    <Select label='Language' value={language} onChange={(e) => setLanguage(e.target.value)}>
+                <FormControl sx={{
+                    margin: '10px'
+                }}>
+                    <InputLabel>Campaign Language:</InputLabel>
+                    <Select label='Campaign Language:' value={language} onChange={(e) => setLanguage(e.target.value)}>
                         <MenuItem value="English">English</MenuItem>
                         <MenuItem value="German">German</MenuItem>
                         <MenuItem value="Spanish">Spanish</MenuItem>
                         <MenuItem value="Japanese">Japanese</MenuItem>
                     </Select>
                 </FormControl>
-                <FormControl  className="form-control">
-                    <Input type='submit' value='Submit Campaign' className="btn" onClick={onSubmit}></Input>
+                <FormControl>
+                    <Button value='Submit Campaign' sx={{
+                        margin: '10px',
+                        color: 'rgb(34, 34, 34)',
+                        backgroundColor: 'rgb(241, 143, 1)'
+                    }} onClick={onSubmit}>Submit</Button>
                 </FormControl>
             </FormGroup>
-            <Button className="btn" style={{float: 'left'}} onClick={closeForm}>Close</Button>
+            <Button sx={{
+                margin: '10px',
+                color: 'rgb(34, 34, 34)',
+                backgroundColor: 'rgb(241, 143, 1)',
+                float: 'left'
+            }} onClick={closeForm}>Close</Button>
         </Grid>
      );
 }

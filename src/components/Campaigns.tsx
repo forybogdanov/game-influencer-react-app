@@ -5,7 +5,10 @@ import { Grid } from "@mui/material";
 
 const Campaigns = (props: ICampaignsProps) => {
     return ( 
-        <Grid container className="campaigns-holder">
+        <Grid container sx={{
+            display: '-webkit-flex',
+            minHeight: '70vh'
+        }}>
                 {props.campaigns.map((campaign: ICampaign) => (
                     <Grid item key={campaign.name}>
                         <Campaign campaign={campaign}/>
