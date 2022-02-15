@@ -1,4 +1,4 @@
-import { Grid, Typography, FormGroup, FormControl, InputLabel, Input, Button, TextField, Select, MenuItem, Checkbox } from "@mui/material";
+import { Grid, Typography, FormGroup, FormControl, InputLabel, Input, Button, TextField, Select, MenuItem, Checkbox, FormControlLabel } from "@mui/material";
 import React, { useState } from "react";
 import { IFormProps } from "../types";
 
@@ -93,12 +93,12 @@ const Form = (props: IFormProps) => {
         <Grid className="form">
             <Typography variant='h1' sx={{fontSize: 32}}>Add Campaign</Typography> 
             <FormGroup>
-                <FormControl className="form-control">
+                <FormControl >
                     <InputLabel>Campaign Name:</InputLabel>
                     <br/>
                     <Input type='text' value={name} onChange={(e) => setName(e.target.value)}></Input>
                 </FormControl>
-                <FormControl className="form-control">
+                <FormControl>
                     <InputLabel>Description:</InputLabel>
                     <br/>
                     <TextField multiline minRows={10} maxRows={20} fullWidth={true} margin='dense' value={description} onChange={(e) => setDescription(e.target.value)}></TextField>
@@ -132,8 +132,7 @@ const Form = (props: IFormProps) => {
                     <Input type='number' value={budget} onChange={(e) => setBudget(parseInt(e.target.value))}></Input>
                 </FormControl>
                 <FormControl className="form-control">
-                    <InputLabel>Can be paid with Crypto currency: </InputLabel>
-                    <Checkbox value={Number(paidWithCrypto)} onChange={(e) => setPaidWithCrypto(e.currentTarget.checked)}></Checkbox>
+                    <FormControlLabel label='Can be paid with Crypto currency' control={<Checkbox value={Number(paidWithCrypto)} checked={paidWithCrypto} onChange={(e) => setPaidWithCrypto(e.currentTarget.checked)}></Checkbox>}/>
                 </FormControl>
                 <FormControl className="form-control">
                     <InputLabel>Campaign Language: </InputLabel>
