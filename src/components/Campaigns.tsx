@@ -5,8 +5,7 @@ import { Grid } from "@mui/material";
 
 const Campaigns = (props: ICampaignsProps) => {
     return ( 
-        <Grid container sx={{
-            display: '-webkit-flex',
+        <Grid container display='flex' sx={{
             minHeight: '70vh'
         }}>
                 {props.campaigns.map((campaign: ICampaign) => (

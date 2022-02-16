@@ -90,7 +90,7 @@ const Form = (props: IFormProps) => {
     }
 
     return ( 
-        <Grid sx={{
+        <Grid container sx={{
             width: '80%',
             maxWidth: '700px',
             margin: '30px auto',
@@ -113,7 +113,13 @@ const Form = (props: IFormProps) => {
                 <FormControl sx={{
                     margin: '10px'
                 }}>
-                    <TextField label='Description' multiline minRows={10} maxRows={20} fullWidth={true} margin='dense' value={description} onChange={(e) => setDescription(e.target.value)}></TextField>
+                    <TextField label='Description' 
+                        multiline 
+                        minRows={10} 
+                        maxRows={20} 
+                        fullWidth={true} 
+                        margin='dense' 
+                        value={description} onChange={(e) => setDescription(e.target.value)}></TextField>
                 </FormControl>
                 <FormControl sx={{
                     margin: '10px'
@@ -158,7 +164,12 @@ const Form = (props: IFormProps) => {
                 <FormControl sx={{
                     margin: '10px'
                 }}>
-                    <FormControlLabel label='Can be paid with Crypto currency' control={<Checkbox value={Number(paidWithCrypto)} checked={paidWithCrypto} onChange={(e) => setPaidWithCrypto(e.currentTarget.checked)}></Checkbox>}/>
+                    <FormControlLabel 
+                        label='Can be paid with Crypto currency' 
+                        control={<Checkbox 
+                        value={Number(paidWithCrypto)} 
+                        checked={paidWithCrypto} 
+                        onChange={(e) => setPaidWithCrypto(e.currentTarget.checked)}></Checkbox>}/>
                 </FormControl>
                 <FormControl sx={{
                     margin: '10px'
