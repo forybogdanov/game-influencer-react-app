@@ -1,6 +1,6 @@
+import { Grid, Typography, FormGroup, FormControl, InputLabel, Input, Button, TextField, Select, MenuItem, Checkbox, FormControlLabel } from "@mui/material";
 import React, { useState } from "react";
 import { IFormProps } from "../types";
-
 
 const Form = (props: IFormProps) => {
     const addCampaign: Function = props.addCampaign; 
@@ -14,6 +14,7 @@ const Form = (props: IFormProps) => {
     const [budget, setBudget] = useState(0)
     const [paidWithCrypto, setPaidWithCrypto] = useState(false)
     const [language, setLanguage] = useState('')
+
 
     function getCurrentDate() {
         let today = new Date()
@@ -89,61 +90,102 @@ const Form = (props: IFormProps) => {
     }
 
     return ( 
-        <div className="form">
-            <h1>Add Campaign</h1> 
-            <form onSubmit={onSubmit}>
-                <div className="form-control">
-                    <label>Campaign Name:</label>
-                    <br/>
-                    <input type='text' maxLength={20} value={name} onChange={(e) => setName(e.target.value)}></input>
-                </div>
-                <div className="form-control">
-                    <label>Description:</label>
-                    <br/>
-                    <textarea maxLength={200} value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
-                </div>
-                <div className="form-control">
-                    <label>Game:</label>
-                    <br/>
-                    <select value={game} onChange={(e) => setGame(e.target.value)}>
-                        {game ? '' : <option>select game</option>}
-                        <option>DOTA 2</option>
-                        <option>Minecraft</option>
-                        <option>Fortnite</option>
-                        <option>Apex Legends</option>
-                        <option>League of Legends</option>
-                        <option>Other</option>
-                    </select>
-                    {game === 'Other'? <input type='text' value={otherGame} onChange={(e) => setOtherGame(e.target.value)}></input> : ''}
-                </div>
-                <div className="form-control">
-                    <label>Start and end date:</label>
-                    <br/>
-                    <input type='date' min={Date()} value={startDate} onChange={(e) => setStartDate(e.target.value)}></input>
-                    <input type='date' value={endDate} onChange={(e) => setEndDate(e.target.value)}></input>
-                </div>
-                <div className="form-control">
-                    <label>Budget: </label>
-                    <input type='number' min={0} max={10000} value={budget} onChange={(e) => setBudget(parseInt(e.target.value))}></input>
-                </div>
-                <div className="form-control">
-                    <label>Can be paid with Crypto currency: </label>
-                    <input type='checkbox' value={Number(paidWithCrypto)} checked={paidWithCrypto} onChange={(e) => setPaidWithCrypto(e.currentTarget.checked)}></input>
-                </div>
-                <div className="form-control">
-                    <label>Campaign Language: </label>
-                    <select value={language} onChange={(e) => setLanguage(e.target.value)}>
-                        {language ? '' : <option>select language</option>}
-                        <option>English</option>
-                        <option>German</option>
-                        <option>Spanish</option>
-                        <option>Japanese</option>
-                    </select>
-                </div>
-                <input type='submit' value='Submit Campaign' className="btn"></input>
-            </form>
-            <button className="btn" style={{float: 'left'}} onClick={closeForm}>Close</button>
-        </div>
+        <Grid sx={{
+            width: '80%',
+            maxWidth: '700px',
+            margin: '30px auto',
+            overflow: 'auto',
+            minHeight: '300px',
+            borderRadius: '5px',
+            backgroundColor: 'rgb(179, 179, 179);',
+            textAlign: 'center',
+            padding: '10px',
+            color: 'rgb(37, 68, 65)'
+        }}>
+            <Typography variant='h1' sx={{fontSize: 32, color: 'rgb(37, 68, 65)'}}>Add Campaign</Typography> 
+            <FormGroup>
+                <FormControl sx={{
+                    margin: '10px'
+                }}>
+                    <InputLabel>Campaign Name:</InputLabel>
+                    <Input type='text' value={name} onChange={(e) => setName(e.target.value)}></Input>
+                </FormControl>
+                <FormControl sx={{
+                    margin: '10px'
+                }}>
+                    <TextField label='Description' multiline minRows={10} maxRows={20} fullWidth={true} margin='dense' value={description} onChange={(e) => setDescription(e.target.value)}></TextField>
+                </FormControl>
+                <FormControl sx={{
+                    margin: '10px'
+                }}>
+                    <InputLabel>Game:</InputLabel>
+                    <Select label='Game' value={game} onChange={(e) => setGame(e.target.value)}>
+                        <MenuItem value={'DOTA 2'}>DOTA 2</MenuItem>
+                        <MenuItem value={'Minecraft'}>Minecraft</MenuItem>
+                        <MenuItem value={'Fortnite'}>Fortnite</MenuItem>
+                        <MenuItem value={'Apex Legends'}>Apex Legends</MenuItem>
+                        <MenuItem value={'League of Legends'}>League of Legends</MenuItem>
+                        <MenuItem value={'Other'}>Other</MenuItem>
+                    </Select>     
+                </FormControl>
+                <FormControl>
+                {game === 'Other'? <Input type='text' value={otherGame} onChange={(e) => setOtherGame(e.target.value)}></Input> : ''}
+                </FormControl>
+                <FormControl sx={{
+                    margin: '10px',
+                    paddingTop: '20px',
+                    paddingLeft: '20px'
+                }}>
+                    <InputLabel>Start date:</InputLabel>
+                    <Input type='date' value={startDate} onChange={(e) => setStartDate(e.target.value)}></Input>
+                </FormControl>
+                <FormControl sx={{
+                    margin: '10px',
+                    paddingTop: '20px',
+                    paddingLeft: '20px'
+                }}>
+                    <InputLabel>End date:</InputLabel>
+                    <Input type='date' value={endDate} onChange={(e) => setEndDate(e.target.value)}></Input>
+                </FormControl>
+                <FormControl sx={{
+                    margin: '10px',
+                    paddingTop: '20px',
+                    paddingLeft: '20px'
+                }}>
+                    <InputLabel sx={{fontSize: 22}}>Budget:</InputLabel>
+                    <Input type='number' value={budget} onChange={(e) => setBudget(parseInt(e.target.value))}></Input>
+                </FormControl>
+                <FormControl sx={{
+                    margin: '10px'
+                }}>
+                    <FormControlLabel label='Can be paid with Crypto currency' control={<Checkbox value={Number(paidWithCrypto)} checked={paidWithCrypto} onChange={(e) => setPaidWithCrypto(e.currentTarget.checked)}></Checkbox>}/>
+                </FormControl>
+                <FormControl sx={{
+                    margin: '10px'
+                }}>
+                    <InputLabel>Campaign Language:</InputLabel>
+                    <Select label='Campaign Language:' value={language} onChange={(e) => setLanguage(e.target.value)}>
+                        <MenuItem value="English">English</MenuItem>
+                        <MenuItem value="German">German</MenuItem>
+                        <MenuItem value="Spanish">Spanish</MenuItem>
+                        <MenuItem value="Japanese">Japanese</MenuItem>
+                    </Select>
+                </FormControl>
+                <FormControl>
+                    <Button value='Submit Campaign' sx={{
+                        margin: '10px',
+                        color: 'rgb(34, 34, 34)',
+                        backgroundColor: 'rgb(241, 143, 1)'
+                    }} onClick={onSubmit}>Submit</Button>
+                </FormControl>
+            </FormGroup>
+            <Button sx={{
+                margin: '10px',
+                color: 'rgb(34, 34, 34)',
+                backgroundColor: 'rgb(241, 143, 1)',
+                float: 'left'
+            }} onClick={closeForm}>Close</Button>
+        </Grid>
      );
 }
  
