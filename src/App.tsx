@@ -38,7 +38,7 @@ function App() {
     setShowForm(!showForm)
   }
   return (
-    <Grid>
+    <Grid container>
       <Header showForm={showForm} onClick={toggleForm}/>
       { showForm ? 
       <Form addCampaign={addCampaign} closeForm={toggleForm}/> : 
