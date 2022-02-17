@@ -17,10 +17,10 @@ export interface ICampaignsProps {
   campaigns: Array<ICampaign>;
 }
 export interface IFormProps {
-  addCampaign: Function; 
-  closeForm:  ()=>void;
+  addCampaign: Function;
+  closeForm: () => void;
 }
 export interface IHeaderProps {
-  onClick: ()=>void; 
-  showForm:  boolean;
+  onClick: () => void;
+  showForm: boolean;
 }
